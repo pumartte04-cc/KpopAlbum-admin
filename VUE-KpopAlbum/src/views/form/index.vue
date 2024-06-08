@@ -59,7 +59,11 @@
     <el-table :data="tableData" style="width: 100%">  
       <el-table-column prop="name" label="Album name" ></el-table-column>  
       <el-table-column prop="zone" label="Artist Zone"></el-table-column>  
-      <el-table-column prop="date1" label="Issue Date"></el-table-column>  
+      <el-table-column prop="date1" label="Issue Date">
+      <template slot-scope="scope">
+          {{ new Date(scope.row.date1).toLocaleDateString() }}
+      </template>
+    </el-table-column> 
       <el-table-column prop="delivery" label="Timing or not">  
         <template slot-scope="scope">  
           <span>{{ scope.row.delivery ? 'Yes' : 'No' }}</span>  

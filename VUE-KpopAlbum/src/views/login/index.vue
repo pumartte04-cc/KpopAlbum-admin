@@ -176,7 +176,7 @@ $light_gray:#463ae4;
 .login-container {
   min-height: 100%;
   width: 100%;
-  background-image: url('E:/程序代码/vue-admin-KpopAlbum/src/assets/IU 03.jpg');
+  background-image: url('~@/assets/IU 03.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;

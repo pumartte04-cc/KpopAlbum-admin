@@ -1,50 +1,56 @@
 <template>
-
-
     <div class='app-container'>
       <el-form :model="tableForm" ref="tableForm" class="demo-ruleForm">
         <el-table :data="tableForm.tableData" border>
-  
-          <el-table-column prop="albumType" label="AlbumType">
+
+          <el-table-column prop="buyerName" label="Buyer Name">
             <template slot-scope="scope">
-              <el-form-item :prop="'tableData.' + scope.$index + '.albumType'" :rules="{required: true, message: 'Album Type cannot be NULL!',trigger: 'change'}">
-                <el-select clearable v-model="scope.row.albumType" filterable placeholder="Choose the album Type!">
+              <el-form-item :prop="'tableData.' + scope.$index + '.buyerName'" :rules="{required: true, message: 'Name cannot be NULL!',trigger: 'blur'}">
+                <el-input v-model="scope.row.buyerName" placeholder="buyerName" clearable></el-input>
+              </el-form-item>
+            </template>
+          </el-table-column>
+  
+          <el-table-column prop="albumName" label="Album Name">
+            <template slot-scope="scope">
+              <el-form-item :prop="'tableData.' + scope.$index + '.albumName'" :rules="{required: true, message: 'Name cannot be NULL!',trigger: 'change'}">
+                <el-select clearable v-model="scope.row.albumName" filterable placeholder="Choose the album!">
                   <el-option v-for="item in albumTypeList" :key="item.id" :label="item.value" :value="item.id"></el-option>
                 </el-select>
               </el-form-item>
             </template>
           </el-table-column>
   
-          <el-table-column prop="artist" label="Artist">
+          <el-table-column prop="num" label="Quantity Purchased">
             <template slot-scope="scope">
-              <el-form-item :prop="'tableData.' + scope.$index + '.artist'" :rules="{required: true, message: 'Artist cannot be NULL!',trigger: 'change'}">
-                <el-select clearable v-model="scope.row.artist" filterable placeholder="Choose the Artist!">
-                  <el-option v-for="item in artistList" :key="item.id" :label="item.value" :value="item.id"></el-option>
+              <el-form-item :prop="'tableData.' + scope.$index + '.num'" :rules="{required: true, message: 'Quantity cannot be NULL!',trigger: 'change'}">
+                <el-select clearable v-model="scope.row.num" filterable placeholder="Choose the Quantity(<10 each)!">
+                  <el-option v-for="item in num" :key="item.id" :label="item.value" :value="item.id"></el-option>
                 </el-select>
               </el-form-item>
             </template>
           </el-table-column>
   
-          <el-table-column prop="pre-saleTime" label="pre-sale Time" >
+          <el-table-column prop="purchaseDate" label="PurchaseDate" >
             <template slot-scope="scope">
-              <el-form-item :prop="'tableData.' + scope.$index + '.preSaleTime'" :rules="{required: true, message: 'Choose the pre-sale Time',trigger: 'blur'}">
-                <el-date-picker v-model="scope.row.preSaleTime" type="date"  value-format="yyyy-MM-dd" placeholder="请选择"></el-date-picker>
+              <el-form-item :prop="'tableData.' + scope.$index + '.purchaseDate'" :rules="{required: true, message: 'Purchase Date cannot be NULL',trigger: 'blur'}">
+                <el-date-picker v-model="scope.row.purchaseDate" type="date"  value-format="yyyy-MM-dd" placeholder="Choose the Purchase Date"></el-date-picker>
+              </el-form-item>
+            </template>
+          </el-table-column>
+
+          <el-table-column prop="contact" label="Contact Details">
+            <template slot-scope="scope">
+              <el-form-item :prop="'tableData.' + scope.$index + '.contact'" :rules="{required: true, message: 'Contact cannot be NULL!',trigger: 'blur'}">
+                <el-input v-model="scope.row.contact" placeholder="Enter the contact details" clearable></el-input>
               </el-form-item>
             </template>
           </el-table-column>
   
-          <el-table-column prop="price" label="Price /USD">
+          <el-table-column prop="location" label="Location">
             <template slot-scope="scope">
-              <el-form-item :prop="'tableData.' + scope.$index + '.price'" :rules="{required: true, message: 'Price cannot be NULL!',trigger: 'blur'}">
-                <el-input v-model="scope.row.price" placeholder="Price" clearable></el-input>
-              </el-form-item>
-            </template>
-          </el-table-column>
-  
-          <el-table-column prop="num" label="Number">
-            <template slot-scope="scope">
-              <el-form-item :prop="'tableData.' + scope.$index + '.num'">
-                <el-input v-model="scope.row.Num" placeholder="Album Num" clearable></el-input>
+              <el-form-item :prop="'tableData.' + scope.$index + '.location'" :rules="{required: true, message: 'Location cannot be NULL!',trigger: 'blur'}">
+                <el-input v-model="scope.row.location" placeholder="Enter the Location" clearable></el-input>
               </el-form-item>
             </template>
           </el-table-column>
@@ -52,7 +58,7 @@
       </el-form>
       <br><br>
       <div style="text-align: center;">
-        <el-button type="primary" @click="submitForm('tableForm')">提交</el-button>
+        <el-button type="primary" @click="submitForm('tableForm')">Submit</el-button>
       </div>
     </div>
   </template>
@@ -80,63 +86,66 @@
           {id: '12',value:'ELLE'},
           {id: '13',value:'The Golden Hor'},
         ],
-        artistList:[
-          {id: '1',value:'BAEKHYUN'},
-          {id: '2',value:'D.O.'},
-          {id: '3',value:'EXO'},
-          {id: '4',value:'IU'}
+        num:[
+          {id: '1',value:'1'},
+          {id: '2',value:'2'},
+          {id: '3',value:'3'},
+          {id: '4',value:'4'},
+          {id: '5',value:'5'},
+          {id: '6',value:'6'},
+          {id: '7',value:'7'},
+          {id: '8',value:'8'},
+          {id: '9',value:'9'},
+          {id: '10',value:'10'},
         ],
         tableForm:{
           tableData:[
             {
-              albumType: '1',
-              artist:'2',
-              preSaleTime: '2024-05-07',
-              price:'$12.33',
-              Num:'unlimited'
+              buyerName:'임선화ᐜ',
+              albumName:'4',
+              num:'5',
+              purchaseDate:'2024-05-23',
+              contact:'+8612345678901',
+              location:'...Wenzhou Zhejiang'
             },
             {
-              albumType: '2',
-              artist:'2',
-              preSaleTime: '2024-05-07',
-              price:'$12.33',
-              Num:'unlimited'
+              buyerName:'Renee',
+              albumName:'7',
+              num:'1',
+              purchaseDate:'2024-05-07',
+              contact:'123456@gmail.com',
+              location:'...Johen Australia'
             },
             {
-              albumType: '5',
-              artist:'1',
-              preSaleTime: '2024-05-07',
-              price:'$12.33',
-              Num:'unlimited'
-            },
-            {
-              albumType: '',
-              artist:'',
-              preSaleTime: '',
-              price:'',
-              Num:''
-            },
+              buyerName:'',
+              albumName:'',
+              num:'',
+              purchaseDate:'',
+              contact:'',
+              location:''
+            }
           ]
         }
       }
     },
     methods:{
-      submitForm(){
+      submitForm(tableForm){
         this.$refs['tableForm'].validate((valid) => {
           if (valid) {
-            this.$message({message: "提交成功", type: 'success'})
+            this.$message({message: "Submit Successful", type: 'success'})
             this.tableForm.tableData.push({
-              name: '',
               albumType: '',
-              startTime: '',
-              endTime: ''
+              artist:'',
+              preSaleTime: '',
+              price:'',
+              Num:''
             });
           } else {
             return false;
           }
         })
       }
-  }
+    }
   }
   </script>
   
